@@ -1,8 +1,10 @@
 package com.example.review.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
+import java.util.Date;
 import java.util.UUID;
 //+--------+---------------+------+-----+---------+----------------+
 //| Field  | Type          | Null | Key | Default | Extra          |
@@ -15,8 +17,10 @@ import java.util.UUID;
 //+--------+---------------+------+-----+---------+----------------+
 
 
-@Data
+
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name="reviews")
 public class Reviews {
 	@Id
@@ -32,9 +36,69 @@ public class Reviews {
 	@Column(name="review")
 	private String review;
 	
-	@Column(name="date")
-	private long date;
-	
 	@Column(name="rate")
 	private int rate;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "createdAt")
+	private Date createdAt;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="last_updated")
+	private Date updatedAt;
+
+	public UUID getId() {
+		return id;
+	}
+
+	public void setId(UUID id) {
+		this.id = id;
+	}
+
+	public UUID getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(UUID user_id) {
+		this.user_id = user_id;
+	}
+
+	public UUID getBook_id() {
+		return book_id;
+	}
+
+	public void setBook_id(UUID book_id) {
+		this.book_id = book_id;
+	}
+
+	public String getReview() {
+		return review;
+	}
+
+	public void setReview(String review) {
+		this.review = review;
+	}
+
+	public int getRate() {
+		return rate;
+	}
+
+	public void setRate(int rate) {
+		this.rate = rate;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
 }
