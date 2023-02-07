@@ -29,7 +29,7 @@ public class Books {
     @Column(nullable = false,name="genre")
     private String genre;
     @JsonIgnore
-    @OneToMany(mappedBy ="book_id", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy ="book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Reviews> reviews;
     @ManyToOne
     @JoinColumn(name = "author_id")

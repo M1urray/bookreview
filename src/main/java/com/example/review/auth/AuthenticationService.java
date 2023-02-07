@@ -9,6 +9,8 @@ import com.example.review.service.dto.RegisterDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -28,13 +30,13 @@ public class AuthenticationService {
         user.setLastname(registerDto.getLastname());
         user.setEmail(registerDto.getEmail());
         user.setRole(Role.USER);
-        Users save = usersRepository.save(user);
+        usersRepository.save(user);
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
     }
-    public AuthenticationResponse authenticate(LoginDto loginDto){
+    public AuthenticationResponse authenticate(LoginDto loginDto) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginDto.getUsername(),

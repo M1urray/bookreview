@@ -27,11 +27,10 @@ public class Reviews {
 	@GeneratedValue(strategy = GenerationType.UUID)
 	@Column(name="id")
 	private UUID id;
-	
-	@Column(name="name")
-	private UUID user_id;
-	@Column(name="book_id")
-	private UUID book_id;
+
+	@ManyToOne
+	@JoinColumn(name="book_id")
+	private Books book;
 	
 	@Column(name="review")
 	private String review;
@@ -52,22 +51,6 @@ public class Reviews {
 
 	public void setId(UUID id) {
 		this.id = id;
-	}
-
-	public UUID getUser_id() {
-		return user_id;
-	}
-
-	public void setUser_id(UUID user_id) {
-		this.user_id = user_id;
-	}
-
-	public UUID getBook_id() {
-		return book_id;
-	}
-
-	public void setBook_id(UUID book_id) {
-		this.book_id = book_id;
 	}
 
 	public String getReview() {
@@ -100,5 +83,13 @@ public class Reviews {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+
+	public Books getBook() {
+		return book;
+	}
+
+	public void setBook(Books book) {
+		this.book = book;
 	}
 }
