@@ -24,9 +24,9 @@ import java.util.UUID;
 @Table(name="reviews")
 public class Reviews {
 	@Id
-	@GeneratedValue(strategy = GenerationType.UUID)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
-	private UUID id;
+	private Long id;
 
 	@ManyToOne
 	@JoinColumn(name="book_id")
@@ -35,8 +35,8 @@ public class Reviews {
 	@Column(name="review")
 	private String review;
 	
-	@Column(name="rate")
-	private int rate;
+	@Column(name="rating")
+	private int rating;
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "createdAt")
 	private Date createdAt;
@@ -45,11 +45,11 @@ public class Reviews {
 	@Column(name="last_updated")
 	private Date updatedAt;
 
-	public UUID getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(UUID id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -61,12 +61,12 @@ public class Reviews {
 		this.review = review;
 	}
 
-	public int getRate() {
-		return rate;
+	public int getRating() {
+		return rating;
 	}
 
-	public void setRate(int rate) {
-		this.rate = rate;
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 
 	public Date getCreatedAt() {

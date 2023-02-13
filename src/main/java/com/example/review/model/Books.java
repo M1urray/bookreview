@@ -38,6 +38,17 @@ public class Books {
     @Column(name = "createdAt")
     private Date createdAt;
 
+    @Column(name="isbn")
+    private String isbn;
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="last_updated")
     private Date updatedAt;

@@ -16,9 +16,9 @@ import java.util.UUID;
 public class Authors {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="author_id")
-    private UUID author_id;
+    private Long author_id;
 
     @Column(name="name")
     private String name;
@@ -28,11 +28,11 @@ public class Authors {
     @OneToMany(mappedBy ="author", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Books> book;
 
-    public UUID getAuthor_id() {
+    public Long getAuthor_id() {
         return author_id;
     }
 
-    public void setAuthor_id(UUID author_id) {
+    public void setAuthor_id(Long author_id) {
         this.author_id = author_id;
     }
 

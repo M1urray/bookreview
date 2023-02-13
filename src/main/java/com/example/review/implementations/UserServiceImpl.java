@@ -1,4 +1,4 @@
-package com.example.review.service.implementations;
+package com.example.review.implementations;
 
 import com.example.review.model.Users;
 import com.example.review.repository.UsersRepository;

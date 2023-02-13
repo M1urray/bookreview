@@ -28,9 +28,9 @@ import java.util.UUID;
 @Table(name="users")
 public class Users implements UserDetails {
 	@Id
-	@GeneratedValue(strategy = GenerationType.UUID)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
-	private UUID userid;
+	private Long user_id;
 	
 	@Column(name="user_name")
 	private String username;
@@ -80,12 +80,12 @@ public class Users implements UserDetails {
 		return true;
 	}
 
-	public UUID getUserid() {
-		return userid;
+	public Long getUserid() {
+		return user_id;
 	}
 
-	public void setUserid(UUID userid) {
-		this.userid = userid;
+	public void setUserid(Long user_id) {
+		this.user_id = user_id;
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package com.example.review;
 
+import com.example.review.clients.OpenApiClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
@@ -13,5 +14,4 @@ public class ReviewBackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ReviewBackendApplication.class, args);
 	}
-
 }
