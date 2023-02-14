@@ -4,8 +4,8 @@ import com.example.review.configuration.JwtService;
 import com.example.review.model.Role;
 import com.example.review.model.Users;
 import com.example.review.repository.UsersRepository;
-import com.example.review.service.dto.LoginDto;
-import com.example.review.service.dto.RegisterDto;
+import com.example.review.dto.LoginDTO;
+import com.example.review.dto.RegisterDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,7 +21,7 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
-    public AuthenticationResponse register(RegisterDto registerDto) {
+    public AuthenticationResponse register(RegisterDTO registerDto) {
         Users user;
         user = new Users();
         user.setUsername(registerDto.getUsername());
@@ -36,7 +36,7 @@ public class AuthenticationService {
                 .token(jwtToken)
                 .build();
     }
-    public AuthenticationResponse authenticate(LoginDto loginDto) {
+    public AuthenticationResponse authenticate(LoginDTO loginDto) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginDto.getUsername(),

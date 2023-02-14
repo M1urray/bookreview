@@ -1,7 +1,7 @@
 package com.example.review.controllers;
 
 import com.example.review.model.Users;
-import com.example.review.implementations.UserServiceImpl;
+import com.example.review.service.implementations.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;

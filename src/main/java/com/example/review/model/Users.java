@@ -29,7 +29,7 @@ import java.util.UUID;
 public class Users implements UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name="user_id")
 	private Long user_id;
 	
 	@Column(name="user_name")
@@ -50,11 +50,31 @@ public class Users implements UserDetails {
 	@Column(name="user_role")
 	@Enumerated(EnumType.STRING)
 	private Role role;
+	@ManyToOne
+	@JoinColumn(name = "review_id")
+	private Reviews reviews;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return 	List.of(new SimpleGrantedAuthority(role.name()));
 	}
+
+	public Long getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(Long user_id) {
+		this.user_id = user_id;
+	}
+
+	public Reviews getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(Reviews reviews) {
+		this.reviews = reviews;
+	}
+
 	@Override
 	public String getPassword() {
 		return password;

@@ -1,6 +1,5 @@
 package com.example.review.service;
 
-import com.example.review.clients.OpenApiClient;
 import com.example.review.model.Books;
 import com.fasterxml.jackson.core.JsonProcessingException;
 

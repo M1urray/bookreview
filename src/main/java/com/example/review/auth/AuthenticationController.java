@@ -1,7 +1,7 @@
 package com.example.review.auth;
 
-import com.example.review.service.dto.LoginDto;
-import com.example.review.service.dto.RegisterDto;
+import com.example.review.dto.LoginDTO;
+import com.example.review.dto.RegisterDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,14 +15,14 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
-            @RequestBody RegisterDto registerDto
+            @RequestBody RegisterDTO registerDto
     ) {
         return ResponseEntity.ok(authenticationService.register(registerDto));
     }
 
     @PostMapping("/login")
     public ResponseEntity<AuthenticationResponse> authenticate(
-            @RequestBody LoginDto loginDto
+            @RequestBody LoginDTO loginDto
             ) {
         return ResponseEntity.ok(authenticationService.authenticate(loginDto));
     }

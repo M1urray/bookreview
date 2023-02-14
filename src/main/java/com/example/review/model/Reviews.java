@@ -25,12 +25,17 @@ import java.util.UUID;
 public class Reviews {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
-	private Long id;
+	@Column(name="review_id")
+	private Long review_id;
 
 	@ManyToOne
 	@JoinColumn(name="book_id")
 	private Books book;
+
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private Users username;
+
 	
 	@Column(name="review")
 	private String review;
@@ -45,12 +50,12 @@ public class Reviews {
 	@Column(name="last_updated")
 	private Date updatedAt;
 
-	public Long getId() {
-		return id;
+	public Long getReview_id() {
+		return review_id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setReview_id(Long review_id) {
+		this.review_id = review_id;
 	}
 
 	public String getReview() {
@@ -71,6 +76,14 @@ public class Reviews {
 
 	public Date getCreatedAt() {
 		return createdAt;
+	}
+
+	public Users getUsername() {
+		return username;
+	}
+
+	public void setUsername(Users username) {
+		this.username = username;
 	}
 
 	public void setCreatedAt(Date createdAt) {

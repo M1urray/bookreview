@@ -1,11 +1,11 @@
-package com.example.review.service.dto;
+package com.example.review.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class RegisterDto {
+public class RegisterDTO {
     private String username;
     private String password;
     private String firstname;

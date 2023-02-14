@@ -1,7 +1,7 @@
 package com.example.review.controllers;
 
 import com.example.review.model.Books;
-import com.example.review.implementations.BooksAuthorsServiceImpl;
+import com.example.review.service.implementations.BooksAuthorsServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

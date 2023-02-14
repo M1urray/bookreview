@@ -1,4 +1,4 @@
-package com.example.review.implementations;
+package com.example.review.service.implementations;
 
 import com.example.review.clients.OpenApiClient;
 import com.example.review.model.Authors;
