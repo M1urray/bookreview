@@ -26,4 +26,10 @@ public class AuthenticationController {
             ) {
         return ResponseEntity.ok(authenticationService.authenticate(loginDto));
     }
+    @PostMapping("/register/admin")
+    public ResponseEntity<AuthenticationResponse> registerAdmin(
+            @RequestBody RegisterDTO registerDto
+    ) {
+        return ResponseEntity.ok(authenticationService.registerAdmin(registerDto));
+    }
 }
