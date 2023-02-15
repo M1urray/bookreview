@@ -51,4 +51,19 @@ public class AuthenticationService {
                 .token(jwtToken)
                 .build();
     }
+    public AuthenticationResponse registerAdmin(RegisterDTO registerDto) {
+        Users user;
+        user = new Users();
+        user.setUsername(registerDto.getUsername());
+        user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
+        user.setFirstname(registerDto.getFirstname());
+        user.setLastname(registerDto.getLastname());
+        user.setEmail(registerDto.getEmail());
+        user.setRole(Role.ADMIN);
+        usersRepository.save(user);
+        var message="Welcome ADMIN";
+        return AuthenticationResponse.builder()
+                .admin_message(message)
+                .build();
+    }
 }
