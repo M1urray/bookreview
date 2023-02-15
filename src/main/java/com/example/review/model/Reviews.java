@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
-import java.util.UUID;
 //+--------+---------------+------+-----+---------+----------------+
 //| Field  | Type          | Null | Key | Default | Extra          |
 //+--------+---------------+------+-----+---------+----------------+
@@ -39,12 +38,22 @@ public class Reviews {
 	
 	@Column(name="review")
 	private String review;
-	
+	@Column(name="isbn")
+	private long isbn;
+
+	public long getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(long isbn) {
+		this.isbn = isbn;
+	}
+
 	@Column(name="rating")
 	private int rating;
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "createdAt")
-	private Date createdAt;
+	private long createdAt;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="last_updated")
@@ -74,7 +83,7 @@ public class Reviews {
 		this.rating = rating;
 	}
 
-	public Date getCreatedAt() {
+	public long getCreatedAt() {
 		return createdAt;
 	}
 
@@ -86,7 +95,7 @@ public class Reviews {
 		this.username = username;
 	}
 
-	public void setCreatedAt(Date createdAt) {
+	public void setCreatedAt(long createdAt) {
 		this.createdAt = createdAt;
 	}
 
@@ -104,5 +113,13 @@ public class Reviews {
 
 	public void setBook(Books book) {
 		this.book = book;
+	}
+	public void updateFields(Reviews r) {
+		this.review_id = r.getReview_id();
+		this.isbn = r.getIsbn();
+		this.username = r.getUsername();
+		this.review = r.getReview();
+		this.createdAt = r.getCreatedAt();
+		this.rating = r.getRating();
 	}
 }
