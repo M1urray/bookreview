@@ -24,9 +24,6 @@ public class Authors {
     private String name;
     @Column(name="bio")
     private String bio;
-    @JsonIgnore
-    @OneToMany(mappedBy ="author", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Books> book;
 
     public Long getAuthor_id() {
         return author_id;
@@ -50,13 +47,5 @@ public class Authors {
 
     public void setBio(String bio) {
         this.bio = bio;
-    }
-
-    public List<Books> getBook() {
-        return book;
-    }
-
-    public void setBook(List<Books> book) {
-        this.book = book;
     }
 }

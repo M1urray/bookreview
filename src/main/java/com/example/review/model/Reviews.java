@@ -1,8 +1,7 @@
 package com.example.review.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+
 
 import java.util.Date;
 //+--------+---------------+------+-----+---------+----------------+
@@ -18,53 +17,87 @@ import java.util.Date;
 
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name="reviews")
 public class Reviews {
+	public Reviews(Long id, Long isbn, String name, String review, Long date, Integer rate, Books book, Date createdAt, Date updatedAt) {
+		this.id = id;
+		this.isbn = isbn;
+		this.name = name;
+		this.review = review;
+		this.date = date;
+		this.rate = rate;
+		this.book = book;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="review_id")
-	private Long review_id;
+	@Column(name="id")
+	private Long id;
+	@Column(name="isbn")
+	private Long isbn;
+
+	@Column(name="name")
+	private String name;
+
+	@Column(name="review")
+	private String review;
+
+	@Column(name="date")
+	private Long date;
+
+	@Column(name="rate")
+	private Integer rate;
 
 	@ManyToOne
 	@JoinColumn(name="book_id")
 	private Books book;
 
-	@ManyToOne
-	@JoinColumn(name="user_id")
-	private Users username;
 
-	
-	@Column(name="review")
-	private String review;
-	@Column(name="isbn")
-	private long isbn;
 
-	public long getIsbn() {
-		return isbn;
+	public Reviews() {
+
 	}
 
-	public void setIsbn(long isbn) {
-		this.isbn = isbn;
+	public Books getBook() {
+		return book;
 	}
 
-	@Column(name="rating")
-	private int rating;
+	public void setBook(Books book) {
+		this.book = book;
+	}
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "createdAt")
-	private long createdAt;
+	private Date createdAt;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="last_updated")
 	private Date updatedAt;
 
-	public Long getReview_id() {
-		return review_id;
+	public Long getId() {
+		return id;
 	}
 
-	public void setReview_id(Long review_id) {
-		this.review_id = review_id;
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(Long isbn) {
+		this.isbn = isbn;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getReview() {
@@ -75,27 +108,27 @@ public class Reviews {
 		this.review = review;
 	}
 
-	public int getRating() {
-		return rating;
+	public Long getDate() {
+		return date;
 	}
 
-	public void setRating(int rating) {
-		this.rating = rating;
+	public void setDate(Long date) {
+		this.date = date;
 	}
 
-	public long getCreatedAt() {
+	public Integer getRate() {
+		return rate;
+	}
+
+	public void setRate(Integer rate) {
+		this.rate = rate;
+	}
+
+	public Date getCreatedAt() {
 		return createdAt;
 	}
 
-	public Users getUsername() {
-		return username;
-	}
-
-	public void setUsername(Users username) {
-		this.username = username;
-	}
-
-	public void setCreatedAt(long createdAt) {
+	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
 
@@ -106,20 +139,12 @@ public class Reviews {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-
-	public Books getBook() {
-		return book;
-	}
-
-	public void setBook(Books book) {
-		this.book = book;
-	}
 	public void updateFields(Reviews r) {
-		this.review_id = r.getReview_id();
+		this.id = r.getId();
 		this.isbn = r.getIsbn();
-		this.username = r.getUsername();
+		this.name = r.getName();
 		this.review = r.getReview();
-		this.createdAt = r.getCreatedAt();
-		this.rating = r.getRating();
+		this.date = r.getDate();
+		this.rate = r.getRate();
 	}
 }

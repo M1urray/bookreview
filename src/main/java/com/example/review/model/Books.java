@@ -10,10 +10,22 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name="books")
 public class Books {
+    public Books(Long book_id, String title, String description, Double price, String language, String genre, List<Reviews> reviews, Authors author, Date createdAt, String isbn, Date updatedAt) {
+        this.book_id = book_id;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.language = language;
+        this.genre = genre;
+        this.reviews = reviews;
+        this.author = author;
+        this.createdAt = createdAt;
+        this.isbn = isbn;
+        this.updatedAt = updatedAt;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long book_id;
@@ -40,6 +52,10 @@ public class Books {
 
     @Column(name="isbn")
     private String isbn;
+
+    public Books() {
+
+    }
 
     public String getIsbn() {
         return isbn;

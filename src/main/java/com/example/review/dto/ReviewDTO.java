@@ -4,11 +4,10 @@ import com.example.review.model.Books;
 import com.example.review.model.Users;
 
 public class ReviewDTO {
-    private Users username;
+    private String user;
     private Integer rating;
     private String review;
     private Books book;
-
     public Books getBook() {
         return book;
     }
@@ -17,12 +16,13 @@ public class ReviewDTO {
         this.book = book;
     }
 
-    public Users getUsername() {
-        return username;
+
+    public String getUser() {
+        return user;
     }
 
-    public void setUsername(Users username) {
-        this.username = username;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public Integer getRating() {

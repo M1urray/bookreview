@@ -1,5 +1,6 @@
 package com.example.review.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,10 +24,18 @@ import java.util.UUID;
 
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name="users")
 public class Users implements UserDetails {
+	public Users(Long user_id, String username, String lastname, String password, String firstname, String email, Role role) {
+		this.user_id = user_id;
+		this.username = username;
+		this.lastname = lastname;
+		this.password = password;
+		this.firstname = firstname;
+		this.email = email;
+		this.role = role;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="user_id")
@@ -50,9 +59,12 @@ public class Users implements UserDetails {
 	@Column(name="user_role")
 	@Enumerated(EnumType.STRING)
 	private Role role;
-	@ManyToOne
-	@JoinColumn(name = "review_id")
-	private Reviews reviews;
+
+
+
+	public Users() {
+
+	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -65,14 +77,6 @@ public class Users implements UserDetails {
 
 	public void setUser_id(Long user_id) {
 		this.user_id = user_id;
-	}
-
-	public Reviews getReviews() {
-		return reviews;
-	}
-
-	public void setReviews(Reviews reviews) {
-		this.reviews = reviews;
 	}
 
 	@Override
