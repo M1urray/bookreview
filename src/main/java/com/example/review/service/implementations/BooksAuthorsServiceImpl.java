@@ -35,13 +35,26 @@ public class BooksAuthorsServiceImpl implements BooksAuthorsService {
         JsonNode root = mapper.readTree(response);
         JsonNode bookNode = root.get(isbn);
         String title = bookNode.get("title").textValue();
+        String subtitle = bookNode.get("subtitle").textValue();
+        String weight = bookNode.get("weight").textValue();
+        String pagination = bookNode.get("pagination").textValue();
+        String publish_date = bookNode.get("publish_date").textValue();
+        String url = bookNode.get("url").textValue();
         JsonNode authorNode = bookNode.get("authors");
         String authorName = authorNode.get(0).get("name").textValue();
+        JsonNode publisherNode = bookNode.get("publishers");
+        String publisherName = publisherNode.get(0).get("name").textValue();
 
         // Use the extracted information to populate a Book and Author object
         Books book = new Books();
         book.setIsbn(isbn);
         book.setTitle(title);
+        book.setSubtitle(subtitle);
+        book.setWeight(weight);
+        book.setPages(pagination);
+        book.setPublish_date(publish_date);
+        book.setUrl(url);
+        book.setPublishers(publisherName);
         booksRepository.save(book);
         Authors author = new Authors();
         author.setName(authorName);

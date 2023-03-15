@@ -4,42 +4,31 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 
 import java.util.Date;
 import java.util.List;
 
-@Entity
+@Entity @RequiredArgsConstructor
 @Table(name="books")
 public class Books {
-    public Books(Long book_id, String title, String description, Double price, String language, String genre, List<Reviews> reviews, Authors author, Date createdAt, String isbn, Date updatedAt) {
-        this.book_id = book_id;
-        this.title = title;
-        this.description = description;
-        this.price = price;
-        this.language = language;
-        this.genre = genre;
-        this.reviews = reviews;
-        this.author = author;
-        this.createdAt = createdAt;
-        this.isbn = isbn;
-        this.updatedAt = updatedAt;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long book_id;
-    @Column(nullable=false)
+    @Column(name="title")
     private String title;
-    @Column(nullable = false,name="description")
-    private String description;
-    @Column(nullable = false,name="price")
-    private Double price;
-    @Column(nullable = false,name="language")
-    private String language;
-
-    @Column(nullable = false,name="genre")
-    private String genre;
+    @Column(name="subtitle")
+    private String subtitle;
+    @Column(name="publish_date")
+    private String publish_date;
+    @Column(name="weight")
+    private String weight;
+    @Column(name="publishers")
+    private String publishers;
+    @Column(name="pages")
+    private String pages;
     @JsonIgnore
     @OneToMany(mappedBy ="book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Reviews> reviews;
@@ -52,22 +41,29 @@ public class Books {
 
     @Column(name="isbn")
     private String isbn;
-
-    public Books() {
-
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="last_updated")
     private Date updatedAt;
+    @Column(name="url")
+    private String url;
+    @Column(name="price")
+    private Float price;
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public Long getBook_id() {
         return book_id;
@@ -85,36 +81,44 @@ public class Books {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getSubtitle() {
+        return subtitle;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
     }
 
-    public Double getPrice() {
-        return price;
+    public String getPublish_date() {
+        return publish_date;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setPublish_date(String publish_date) {
+        this.publish_date = publish_date;
     }
 
-    public String getLanguage() {
-        return language;
+    public String getWeight() {
+        return weight;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
+    public void setWeight(String weight) {
+        this.weight = weight;
     }
 
-    public String getGenre() {
-        return genre;
+    public String getPublishers() {
+        return publishers;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setPublishers(String publishers) {
+        this.publishers = publishers;
+    }
+
+    public String getPages() {
+        return pages;
+    }
+
+    public void setPages(String pages) {
+        this.pages = pages;
     }
 
     public List<Reviews> getReviews() {
@@ -139,6 +143,14 @@ public class Books {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public Date getUpdatedAt() {

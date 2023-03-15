@@ -12,21 +12,12 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "http://localhost:3000",allowCredentials = "true")
 @RequestMapping("/api/v1/authors")
 public class AuthorsController {
-    private final AuthorsServiceImpl authorsService;
     private final AuthorsRepository authorsRepository;
 
 
-    public AuthorsController(AuthorsServiceImpl authorsService,
-                             AuthorsRepository authorsRepository) {
-        this.authorsService = authorsService;
+    public AuthorsController(AuthorsRepository authorsRepository) {
         this.authorsRepository = authorsRepository;
     }
-
-    @PostMapping
-    public Authors addAuthor(@RequestBody AuthorDTO authorDTO){
-        return authorsService.saveAuthor(authorDTO);
-    }
-
 
     @PutMapping("/{id}")
     public Authors updateAuthor(@PathVariable Long id, @RequestBody AuthorDTO authorDTO ){
