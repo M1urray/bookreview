@@ -9,6 +9,7 @@ import com.example.review.service.BooksAuthorsService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mysql.cj.PreparedQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,9 +36,6 @@ public class BooksAuthorsServiceImpl implements BooksAuthorsService {
         JsonNode root = mapper.readTree(response);
         JsonNode bookNode = root.get(isbn);
         String title = bookNode.get("title").textValue();
-        String subtitle = bookNode.get("subtitle").textValue();
-        String weight = bookNode.get("weight").textValue();
-        String pagination = bookNode.get("pagination").textValue();
         String publish_date = bookNode.get("publish_date").textValue();
         String url = bookNode.get("url").textValue();
         JsonNode authorNode = bookNode.get("authors");
@@ -46,19 +44,17 @@ public class BooksAuthorsServiceImpl implements BooksAuthorsService {
         String publisherName = publisherNode.get(0).get("name").textValue();
 
         // Use the extracted information to populate a Book and Author object
-        Books book = new Books();
-        book.setIsbn(isbn);
-        book.setTitle(title);
-        book.setSubtitle(subtitle);
-        book.setWeight(weight);
-        book.setPages(pagination);
-        book.setPublish_date(publish_date);
-        book.setUrl(url);
-        book.setPublishers(publisherName);
-        booksRepository.save(book);
         Authors author = new Authors();
         author.setName(authorName);
         authorsRepository.save(author);
+        Books book = new Books();
+        book.setIsbn(isbn);
+        book.setTitle(title);
+        book.setPublish_date(publish_date);
+        book.setUrl(url);
+        book.setAuthor(author);
+        book.setPublishers(publisherName);
+        booksRepository.save(book);
         return book;
     }
 }

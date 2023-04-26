@@ -2,8 +2,6 @@ package com.example.review.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 
@@ -134,7 +132,7 @@ public class Books {
     }
 
     public void setAuthor(Authors author) {
-        this.author = author;
+        this.author = this.author;
     }
 
     public Date getCreatedAt() {
