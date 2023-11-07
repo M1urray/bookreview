@@ -11,5 +11,4 @@ public class RegisterDTO {
     private String firstname;
     private String email;
     private String lastname;
-
 }
